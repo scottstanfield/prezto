@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+for rc in $HOME/.zprezto/runcoms/z*(.N); do
+  ln -Fs $rc "$HOME/.${rc:t}"
+done
