@@ -17,7 +17,7 @@ function mandlebrot {
                ((pnew=p*p-q*q+a, q=2*p*q+b, p=pnew))
            done
            ((colour=(i/4)%8))
-            echo -n "\\e[4${colour}m "
+            echo -e -n "\\e[4${colour}m "
         done
         echo
     done
