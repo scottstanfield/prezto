@@ -9,13 +9,18 @@ zstyle ':prezto:load' pmodule \
   'history' \
   'directory' \
   'spectrum' \
+  'gnu-utility' \
   'utility' \
   'completion' \
   'syntax-highlighting' \
   'completion' \
   'git' \
+  'mandlebrot' \
+  'history' \
+  'history-substring-search' \
   'prompt'
 
+  
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
