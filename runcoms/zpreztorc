@@ -3,6 +3,7 @@ zstyle ':prezto:*:*' color 'yes'
 
 # Set the Prezto modules to load (browse modules).
 zstyle ':prezto:load' pmodule \
+  'archive' \
   'environment' \
   'terminal' \
   'editor' \
@@ -20,7 +21,6 @@ zstyle ':prezto:load' pmodule \
   'history-substring-search' \
   'prompt'
 
-  
 # Set the key mapping style to 'emacs' or 'vi'.
 zstyle ':prezto:module:editor' key-bindings 'emacs'
 
@@ -60,13 +60,14 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
   'pattern' \
   'cursor' \
   'root'
+
 # Set syntax highlighting styles.
 zstyle ':prezto:module:syntax-highlighting' styles \
   'builtin' 'fg=purple,bold' \
   'command' 'fg=purple,bold' \
   'alias' 'fg=purple,bold' \
-  'function' 'fg=blue'
-
+  'path' 'none' \
+  'function' 'fg=purple,bold' 
 
 # Terminal
 # Auto set the tab and window titles.

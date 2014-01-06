@@ -1,4 +1,3 @@
-#
 # Executes commands at the start of an interactive session.
 #
 # Authors:
@@ -11,4 +10,113 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+
+setopt allexport					# assume all variables are exported
+setopt interactivecomments			# allow comments in interactive shell; useful for pasting
+setopt noclobber					# don't redirect onto existing files
+setopt AUTO_CD
+
+# Undo all the settings from prezto
+unsetopt correct_all
+unsetopt correct
+unset -f echo
+unalias rm
+
+bindkey '^f' vi-cmd-mode
+bindkey jj vi-cmd-mode
+
+# Map ls to GNU ls with color support
+# if $(gls &>/dev/null)
+# then
+# 	eval `gdircolors -b ~/projects/repos/dircolors-solarized/dircolors.ansi-universal`
+# 	alias ls='gls --color=auto --group-directories-first -F'
+# fi
+
+ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=white,bold,bg=red')
+ZSH_HIGHLIGHT_PATTERNS+=('sudo ' 'fg=white,bold,bg=red')
+
+
+REPORTTIME=3
+export REPORTTIME=3
+export TIMEFMT="%U user %S system %P cpu %*Es total"
+
+alias zprez="vi -p ~/.zpreztorc"
+alias zshrc="vi -p ~/.zshrc"
+
+alias c="clear"
+alias h="history"
+alias vi="vim -p"
+alias ,="cd .."
+alias m="less"
+alias ls="$aliases[ls] -F"
+alias -- lynx='lynx --accept_all_cookies'
+alias rm='nocorrect rm -v'
+
+alias tma'tmux -2 attach -d -t'
+alias tm='tmux -2 new -s $(basename $(pwd))'
+alias tml='tmux list-sessions'
+
+alias pdb='python -m pudb.run'
+
+alias ga='git add'
+alias gs='git status 2>/dev/null'
+alias gss='git status --short 2>/dev/null'
+alias gitlog='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias zshupdate="git pull && git submodule update --init --recursive"
+
+alias tarc='tar czvf'
+alias tarls='tar tzvf'
+alias tarx='tar xzvf'
+
+# Mac Specific
+alias show_hidden="defaults write com.apple.Finder AppleShowAllFiles YES && killall Finder"
+alias hide_hidden="defaults write com.apple.Finder AppleShowAllFiles NO && killall Finder"
+
+gg() { git commit -m "$*" }
+ff () { find . -name $1 -print }
+take () { mkdir $1 && cd $1 }
+zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
+autoload -U zmv
+alias mmv='noglob zmv -W'
+
+# Imported from cshrc
+alias -- md='mkdir'
+alias -- mv='mv -i'
+alias -- pd='pushd'
+alias -- t='python ~/projects/repos/t/t.py --task-dir ~/projects/tasks --list tasks'
+alias -- taillog='tail -F /var/log/system.log | grcat conf.log ;'
+alias -- tc='top -o cpu'
+alias -- tm='top -o vsize'
+alias -- ver='sw_ver'
+alias -- vimrc='vi ~/.vimrc'
+
+path+=($PWD/bin)
+path=($^path(N))
+
+
+# export TERM='xterm-256color'
+# export ITERM_PROFILE='solarized-light'
+# export GREP_OPTIONS='--color=auto'
+# export LESS='XFR'
+# export TIMEFMT='%U user %S system %P cpu %*Es total'
+# export GNUTERMAPP='/Applications/AquaTerm.app'
+# export GNUTERM='aqua'
+# export PKG_CONFIG_PATH='/usr/X11/lib/pkgconfig'
+# export RBENV_ROOT='/usr/local/var/rbenv'
+export LLVM_CONFIG_PATH='/usr/local/bin/llvm-config'
+export COMPILER='gcc'
+export CC='/usr/bin/gcc'
+
+# path=(/usr/local/bin /usr/local/share/npm/bin /usr/local/opt/coreutils/bin /usr/local/var/rbenv/shims /usr/local/heroku/bin /usr/local/bin /usr/local/sbin /usr/bin /bin /usr/sbin /sbin /opt/X11/bin /Users/scott/bin .)
+# prompt='[%m:%c3] %n%# '
+# promptchars='%#'
+
+# for tmux: export 256color
+[ -n "$TMUX" ] && export TERM=rxvt-256color
+
+# watch for login/logout
+watch=all
 
